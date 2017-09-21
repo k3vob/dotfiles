@@ -1,0 +1,197 @@
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+[colours]
+bg =    #ee292f37
+maia =  #259E83
+white = #e8e8e8
+red =   #ff4d4d
+grey =  #33
+clear = #00
+
+[bar/top]
+monitor = eDP1
+width = 100%
+height = 32
+radius = 0
+;bottom = true
+fixed-center = true
+
+background = ${colours.bg}
+;foreground = ${colours.maia}
+
+border-size = 30
+border-color =${colours.clear}
+
+border-bottom-size = 0
+border-bottom-color = ${colours.clear}
+
+border-top-size = 30
+border-top-color = ${colours.clear}
+
+padding = 5
+module-margin = 4
+
+font-0 = System San Francisco Display:size=10;2
+font-1 = FontAwesome:size=14;3
+font-2 = MaterialIcons:size=14;4
+;http://fontawesome.io/cheatsheet/
+;https://shanfan.github.io/material-icons-cheatsheet/
+
+modules-left   = i3 xwindow
+modules-center = clock
+modules-right  = brightness volume battery wifi powermenu
+
+[module/clock]
+type = internal/date
+date = %{F#17a086}   %{F#66}%a %b %d   %{F#e8e8e8}%H:%M
+
+[module/battery]
+type = internal/battery
+
+battery = BAT0
+adapter = ADP0
+full-at = 100
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = <ramp-capacity> <label-full>
+
+label-charging-foreground = ${colours.white}
+label-discharging-foreground = ${colours.white}
+label-full-foreground = ${colours.white}
+
+label-charging-font = 0
+label-discharging-font = 0
+label-full-font = 0
+
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = ${colours.red}
+ramp-capacity-1 = 
+ramp-capacity-1-foreground = ${colours.maia}
+ramp-capacity-2 = 
+ramp-capacity-2-foreground = ${colours.maia}
+ramp-capacity-3 = 
+ramp-capacity-3-foreground = ${colours.maia}
+ramp-capacity-4 = 
+ramp-capacity-4-foreground = ${colours.maia}
+
+animation-charging-0 = %{F#17a086} 
+animation-charging-1 = %{F#17a086} 
+animation-charging-2 = %{F#17a086} 
+animation-charging-3 = %{F#17a086} 
+animation-charging-4 = %{F#17a086} 
+animation-charging-framerate = 750
+
+[module/wifi]
+type = internal/network
+interface = wlp2s0
+interval = 1.0
+ping-interval = 10
+
+format-connected = <label-connected>
+label-connected = %{F#17a086} %{F#e8e8e8}%essid%
+label-disconnected = %{F#17a086}
+
+[module/volume]
+type = internal/volume
+
+format-volume = <ramp-volume> <bar-volume>
+;<label-volume>
+label-muted = 
+label-muted-foreground = ${colours.maia}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-volume-foreground = ${colours.maia}
+
+bar-volume-width = 6
+bar-volume-indicator =
+bar-volume-fill = 
+bar-volume-fill-font = 3
+bar-volume-fill-foreground = ${colours.white}
+bar-volume-empty = 
+bar-volume-empty-font = 3
+bar-volume-empty-foreground = ${colours.grey}
+
+;label-volume-foreground = ${colours.white}
+;label-volume-font = 0
+
+[module/brightness]
+type = internal/xbacklight
+output = eDP1
+format = <ramp> <bar>
+
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+ramp-foreground = ${colours.maia}
+
+bar-width = 6
+bar-indicator =
+bar-fill = 
+bar-fill-font = 3
+bar-fill-foreground = ${colours.white}
+bar-empty = 
+bar-empty-font = 3
+bar-empty-foreground = ${colours.grey}
+
+[module/i3]
+type = internal/i3
+enable-scroll = false
+
+label-focused = %name%
+label-focused-foreground = ${colours.maia}
+label-focused-padding = 3
+
+label-unfocused = %name%
+label-unfocused-foreground = ${colours.white}
+label-unfocused-padding = 3
+
+label-visible = %name%
+label-visible-foreground = ${colours.white}
+label-visible-padding = 3
+
+label-urgent = %name%
+label-urgent-foreground = ${colours.red}
+label-urgent-padding = 3
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-foreground = ${colours.white}
+label-mode-background = ${colours.red}
+
+[module/xwindow]
+type = internal/xwindow
+
+label = %title%
+label-foreground = ${colours.white}
+
+[module/powermenu]
+type = custom/menu
+
+format-spacing = 2
+
+label-open = 
+label-close = 
+label-separator = |
+
+label-open-foreground = ${colours.maia}
+label-close-foreground = ${colours.maia}
+label-separator-foreground = ${colours.grey}
+
+
+menu-0-0 = Lock
+menu-0-0-foreground = ${colours.white}
+menu-0-0-exec = ~/.config/i3/Lock.sh
+menu-0-1 = Reboot
+menu-0-1-foreground = ${colours.white}
+menu-0-1-exec = reboot
+menu-0-2 = Shutdown
+menu-0-2-foreground = ${colours.white}
+menu-0-2-exec = poweroff

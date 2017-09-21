@@ -1,0 +1,58 @@
+[options]
+font = Droid Sans Mono 14
+mouse_autohide = true
+allow_bold = true
+dynamic_title = true
+clickable_url = true
+scrollback_lines = 15000
+search_wrap = true
+cursor_shape = block
+cursor_blink = on
+# highlight = #2f2f2f
+# padding = 2
+# scroll_on_output = false
+# scroll_on_keystroke = true
+# audible_bell = false
+# urgent_on_bell = true
+# icon_name = terminal
+# geometry = 640x480
+# size_hints = true
+# browser = xdg-open
+# filter_unmatched_urls = true
+# modify_other_keys = false
+
+[hints]
+#font = Monospace 12
+# foreground = #dcdccc
+# background = #3f3f3f
+# active_foreground = #ff0000
+# active_background = #ff0000
+# padding = 2
+# border = #3f3f3f
+# border_width = 50
+# roundness = 2.0
+
+[colors]
+background = rgba(41, 47, 55, .98)
+cursor = #e8e8e8
+cursor_foreground = rgba(41, 47, 55, 1)
+foreground = #e8e8e8
+highlight = #2f2f2f
+
+# colors from color0 to color254 can be set
+color0 = #fabd27
+color1 = #dc322f
+color2 = #b8ff26
+color3 = #b58900
+color4 = #268bd2
+color5 = #f17296
+color6 = #2aa198
+color7 = #eee8d5
+color8 = #002b36
+color9 = #cb4b16
+color10 = #586e75
+color11 = #8ec07c
+color12 = #fbf1c7
+color13 = #6c71c4
+color14 = #282828
+#color15 = #fdf6e3
