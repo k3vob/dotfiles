@@ -12,6 +12,10 @@
 
 ![alt text](https://i.imgur.com/pDs1iUh.png)
 
+![alt text](http://i.imgur.com/KYukaeC.jpg)
+
+![alt text](https://i.imgur.com/h9z8t2M.png)
+
 ![alt text](https://i.imgur.com/7JQktuf.png)
 
 ![alt text](https://i.imgur.com/yN3FCs4.png)
