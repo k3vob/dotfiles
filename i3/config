@@ -23,6 +23,9 @@ font pango:System San Francisco Display 11
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # Wallpaper
+#exec_always --no-startup-id feh --bg-scale /home/kev/Pictures/Wallpapers/16x9/9koaOtI.jpg
+#exec --no-startup-id python ~/.config/i3/WallpaperSlideshow.py ~/Pictures/Wallpapers/16x9
+#exec --no-startup-id ~/.config/i3/WallpaperSlideshow.sh
 exec_always --no-startup-id bgchd -dir ~/Pictures/Wallpapers/16x9 -bcknd feh -rpl -intv 1m
 
 # Compton
