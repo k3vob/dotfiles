@@ -1,7 +1,5 @@
 # dotfiles
 
-[Link to wallpaper dump](https://drive.google.com/open?id=0B7qDUDai7Ylob0h6N0NCNHotUGc)
-
 ![alt text](http://i.imgur.com/eXVnuaH.jpg)
 
 ![alt text](https://i.imgur.com/A7ldcfX.png)
