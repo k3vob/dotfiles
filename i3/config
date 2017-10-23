@@ -1,3 +1,11 @@
+#####################
+#        TODO       #
+# - sddm            #
+# - slideshow       #
+# - fade transition #
+# - blur            #
+#####################
+
 # Windows button
 set $mod Mod4
 
@@ -5,9 +13,9 @@ set $mod Mod4
 for_window [class="^.*"] border pixel 0
 
 # Gaps
-gaps inner 30
-gaps outer 0
-#smart_gaps on
+# gaps inner 30
+# gaps outer 0
+# smart_gaps on
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -28,6 +36,9 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 #exec --no-startup-id ~/.config/i3/WallpaperSlideshow.sh
 exec_always --no-startup-id bgchd -dir ~/Pictures/Wallpapers/16x9 -bcknd feh -rpl -intv 1m
 
+###### NOT WORKING WELL WITH WALLPAPER SLIDESHOW
+#exec --no-startup-id ~/.config/i3/bgblur.sh &
+
 # Compton
 #exec_always --no-startup-id compton --config ~/.config/compton/compton.conf
 
@@ -45,12 +56,18 @@ bindsym $mod+q exec --no-startup-id ~/.config/i3/Lock.sh
 bindsym $mod+Escape kill
 
 # rofi
-bindsym $mod+Return exec rofi -show run -display-run ":"
+bindsym $mod+Return exec rofi -show drun -display-drun ":"
 
 # Screenshots
 bindsym $mod+Print exec spectacle
 bindsym $mod+Ctrl+Print exec spectacle -r
 bindsym $mod+Shift+Print exec spectacle -a
+
+# Media controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 ################################################################################
 # TILING
@@ -115,7 +132,7 @@ bindsym $mod+d focus child
 
 # http://fontawesome.io/cheatsheet/
 
-set $workspace1 "1  "
+set $workspace1 "1  "
 set $workspace2 "2  "
 set $workspace3 "3  "
 set $workspace4 "4  "
@@ -125,6 +142,9 @@ set $workspace7 "7  "
 set $workspace8 "8  "
 set $workspace9 "9  "
 set $workspace10 "10  "
+
+# toggle between workspaces
+bindsym $mod+Tab workspace back_and_forth
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -159,9 +179,12 @@ assign [class="octopi"] $workspace8
 assign [class="systemsettings"] $workspace9
 assign [class="Spotify"] $workspace10
 
+for_window [class="Termite"] floating enable;
 for_window [class="Wicd-client.py"] floating enable;
 for_window [class="xpad"] floating enable;
 for_window [class="Genymotion Player"] floating enable;
+for_window [class="Tk"] floating enable;    # matplotlib
+for_window [class="etcher-electron"] floating enable;
 
 ################################################################################
 # RESIZING
@@ -181,10 +204,10 @@ mode "" {
         bindsym semicolon resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"

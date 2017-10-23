@@ -3,8 +3,14 @@ margin-top = 0
 margin-bottom = 0
 
 [colours]
-bg =    #ee292f37
+; less transparent - matching termite
+bg = #fa292f37
+
+; more transparent
+;bg =   #e5292f37
+
 maia =  #259E83
+maia_darker = #158E73
 white = #e8e8e8
 red =   #ff4d4d
 grey =  #33
@@ -21,16 +27,16 @@ fixed-center = true
 background = ${colours.bg}
 ;foreground = ${colours.maia}
 
-border-size = 30
+border-size = 0                         ; 30 for gaps
 border-color =${colours.clear}
 
 border-bottom-size = 0
 border-bottom-color = ${colours.clear}
 
-border-top-size = 30
+border-top-size = 0                     ; 30 for gaps
 border-top-color = ${colours.clear}
 
-padding = 5
+padding = 0                             ; 0 for powermenu
 module-margin = 4
 
 font-0 = System San Francisco Display:size=10;2
@@ -41,7 +47,7 @@ font-2 = MaterialIcons:size=14;4
 
 modules-left   = i3 xwindow
 modules-center = clock
-modules-right  = brightness volume battery wifi powermenu
+modules-right  = updates brightness volume battery wifi powermenu
 
 [module/clock]
 type = internal/date
@@ -141,6 +147,72 @@ bar-empty = 
 bar-empty-font = 3
 bar-empty-foreground = ${colours.grey}
 
+
+[module/cpu]
+type = internal/cpu
+
+interval = 0.5
+
+format = <label> <ramp-coreload>
+
+; Available tokens:
+;   %percentage% (default) - total cpu load
+;   %percentage-cores% - load percentage for each core
+;   %percentage-core[1-9]% - load percentage for specific core
+label = 
+label-foreground = ${colours.maia}
+
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
+
+[module/ram]
+type = internal/memory
+interval = 3
+format = <label> <bar-used>
+
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+label = 
+label-foreground = ${colours.maia}
+
+bar-used-indicator =
+bar-used-width = 6
+bar-used-foreground-0 = #e8e8e8
+;bar-used-foreground-1 = #557700
+;bar-used-foreground-2 = #f5a70a
+;bar-used-foreground-3 = #ff5555
+bar-used-fill = 
+bar-used-empty = 
+bar-used-empty-foreground = ${colours.grey}
+
+[module/updates]
+type = custom/script
+interval = 1200
+format = <label>
+label = "%output:0:30%"
+label-foreground = ${colours.red}
+exec = ~/.config/polybar/updates.sh
+exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
+
+[module/todo]
+type = custom/script
+label-foreground = ${colours.maia}
+exec = echo ""
+click-left = xpad
+
 [module/i3]
 type = internal/i3
 enable-scroll = false
@@ -171,17 +243,19 @@ type = internal/xwindow
 
 label = %title%
 label-foreground = ${colours.white}
+label-maxlen = 73
 
 [module/powermenu]
 type = custom/menu
 
 format-spacing = 2
 
-label-open = 
+label-open = "      "
 label-close = 
 label-separator = |
 
-label-open-foreground = ${colours.maia}
+label-open-foreground = ${colours.white}
+label-open-background = ${colours.maia_darker}
 label-close-foreground = ${colours.maia}
 label-separator-foreground = ${colours.grey}
 
@@ -192,6 +266,6 @@ menu-0-0-exec = ~/.config/i3/Lock.sh
 menu-0-1 = Reboot
 menu-0-1-foreground = ${colours.white}
 menu-0-1-exec = reboot
-menu-0-2 = Shutdown
+menu-0-2 = "Shutdown   "
 menu-0-2-foreground = ${colours.white}
 menu-0-2-exec = poweroff

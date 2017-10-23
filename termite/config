@@ -34,10 +34,10 @@ cursor_blink = on
 
 [colors]
 background = rgba(41, 47, 55, .98)
-cursor = #e8e8e8
-cursor_foreground = rgba(41, 47, 55, 1)
-foreground = #e8e8e8
-highlight = #2f2f2f
+foreground = #D0ECE7
+cursor = #D0ECE7
+cursor_foreground = #138D75
+
 
 # colors from color0 to color254 can be set
 color0 = #fabd27

@@ -1,0 +1,299 @@
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+[bar/top]
+monitor = eDP1
+width = 100%
+height = 20
+offset-x = 0
+offser-y = 0
+bottom = true
+
+background = #ee292f37
+foreground = #e8e8e8
+
+line-color = #7cafc2
+line-size = 0
+
+border-bottom-size = 0
+border-bottom-color = #7cafc2
+
+border-top-size = 7
+border-top-color = ${bar/top.background}
+
+spacing = 2
+padding-right = 5
+padding-left = 5
+module-margin = 4
+
+tray-position = right
+tray-detached = false
+tray-transparent = false
+
+font-0 = Source Sans Pro:size=9;-1
+font-1 = MaterialIcons:size=10;0
+font-2 = Hack:size=9:antialias=false;-2
+font-3 = FontAwesome:size=10;0
+
+modules-left = i3 xwindow #cpu #memory
+modules-center = clock
+modules-right = brightness battery wireless-network #volume #wired-network
+
+[module/brightness]
+type = internal/xbacklight
+output = eDP1
+format = <ramp> <bar>
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = #17a086
+
+bar-width = 8
+bar-indicator = |
+bar-indicator-font = 3
+bar-indicator-foreground = #17a086
+bar-fill = 
+bar-fill-font = 3
+bar-fill-foreground = #e8e8e8
+bar-empty = 
+bar-empty-font = 3
+bar-empty-foreground = #44
+
+[module/i3]
+type = internal/i3
+
+format = <label-state> <label-mode>
+label-mode = %mode%
+label-mode-foreground = #17a086
+label-mode-padding = 2
+
+label-focused = %index%
+label-focused-foreground = #17a086
+label-focused-underline = #17a086
+label-focused-padding = 4
+
+label-unfocused = %index%
+label-unfocused-foreground = #e8e8e8
+label-unfocused-padding = 4
+
+label-visible = %index%
+label-visible-underline = #555555
+label-visible-foreground = #e8e8e8
+label-visible-padding = 4
+
+label-urgent = %index%
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+Label-urgent-padding = 4
+
+[module/battery]
+type = internal/battery
+
+battery = BAT0
+adapter = ADP0
+full-at = 100
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = <ramp-capacity> <label-full>
+
+label-charging-foreground = #e8e8e8
+label-discharging-foreground = #e8e8e8
+label-full-foreground = #e8e8e8
+
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = #f53c3c
+ramp-capacity-1 = 
+ramp-capacity-1-foreground = #17a086
+ramp-capacity-2 = 
+ramp-capacity-2-foreground = #17a086
+ramp-capacity-3 = 
+ramp-capacity-3-foreground = #17a086
+ramp-capacity-4 = 
+ramp-capacity-4-foreground = #17a086
+
+bar-capacity-width = 10
+bar-capacity-format = %{+u}%{+o}%fill%%empty%%{-u}%{-o}
+bar-capacity-fill = █
+bar-capacity-fill-foreground = #ddffffff
+bar-capacity-fill-font = 3
+bar-capacity-empty = █
+bar-capacity-empty-font = 3
+bar-capacity-empty-foreground = #44ffffff
+
+animation-charging-0 = %{F#17a086}  
+animation-charging-1 = %{F#17a086}  
+animation-charging-2 = %{F#17a086}  
+animation-charging-3 = %{F#17a086}  
+animation-charging-4 = %{F#17a086}  
+animation-charging-framerate = 750
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+format = <label> <ramp-coreload>
+label = CPU
+
+ramp-coreload-0 = ▁
+ramp-coreload-0-font = 2
+ramp-coreload-0-foreground = #7cafc2
+ramp-coreload-1 = ▂
+ramp-coreload-1-font = 2
+ramp-coreload-1-foreground = #7cafc2
+ramp-coreload-2 = ▃
+ramp-coreload-2-font = 2
+ramp-coreload-2-foreground = #7cafc2
+ramp-coreload-3 = ▄
+ramp-coreload-3-font = 2
+ramp-coreload-3-foreground = #7cafc2
+ramp-coreload-4 = ▅
+ramp-coreload-4-font = 2
+ramp-coreload-4-foreground = #fba922
+ramp-coreload-5 = ▆
+ramp-coreload-5-font = 2
+ramp-coreload-5-foreground = #fba922
+ramp-coreload-6 = ▇
+ramp-coreload-6-font = 2
+ramp-coreload-6-foreground = #e8e8e85555
+ramp-coreload-7 = █
+ramp-coreload-7-font = 2
+ramp-coreload-7-foreground = #e8e8e85555
+
+[module/clock]
+type = internal/date
+date = %%{F#17a086}   %%{F#99}%a %b %d  %%{F#e8e8e8}%H:%M
+
+[module/memory]
+type = internal/memory
+format = <label> <bar-used>
+label = RAM
+
+bar-used-width = 15
+bar-used-foreground-0 = #7cafc2
+bar-used-foreground-1 = #7cafc2
+bar-used-foreground-2 = #fba922
+bar-used-foreground-3 = #e8e8e85555
+bar-used-indicator = |
+bar-used-indicator-font = 6
+bar-used-indicator-foreground = #e8e8e8
+bar-used-fill = ─
+bar-used-fill-font = 6
+bar-used-empty = ─
+bar-used-empty-font = 6
+bar-used-empty-foreground = #444444
+
+[module/mpd]
+type = internal/mpd
+format-online = <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
+
+icon-play = 
+icon-pause = 
+icon-stop = 
+icon-prev = 
+icon-next = 
+icon-random = 
+icon-repeat = 
+
+toggle-on-foreground =
+toggle-off-foreground = #55
+
+bar-progress-width = 45
+bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
+bar-progress-indicator = |
+bar-progress-indicator-foreground = #e8e8e8
+bar-progress-indicator-font = 3
+bar-progress-fill = ─
+bar-progress-fill-foreground = #bb
+bar-progress-fill-font = 3
+bar-progress-empty = ─
+bar-progress-empty-font = 3
+bar-progress-empty-foreground = #44
+
+[module/music]
+type = custom/script
+interval = 2
+label = %output:0:45:...%
+exec = ~/.config/polybar/mpris.sh
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+label-foreground = #e8e8e8
+label-layout = %{F#55}%{F-} %layout%
+label-layout-underline = ${colors.secondary}
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.secondary}
+label-indicator-underline = ${colors.secondary}
+
+[module/wireless-network]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+ping-interval = 10
+
+format-connected = <ramp-signal> <label-connected>
+label-connected = %essid%
+label-disconnected = X
+label-connected-foreground = #e8e8e8
+label-disconnected-foreground = #66
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = #17a086
+
+animation-packetloss-0 = 
+animation-packetloss-0-foreground = #e8e8e8a64c
+animation-packetloss-1 = 
+animation-packetloss-1-foreground = ${bar/top.foreground}
+animation-packetloss-framerate = 500
+
+[module/wired-network]
+type = internal/network
+interface = eth0
+interval = 3.0
+
+label-connected =    %{T3}%local_ip%%{T-}
+label-disconnected-foreground = #66
+
+[module/volume]
+type = internal/volume
+speaker-mixer = Speaker
+headphone-mixer = Headphone
+headphone-id = 9
+master-mixer = IEC958
+master-soundcard = default
+
+format-volume = <ramp-volume> <label-volume>
+label-muted =   muted
+label-muted-foreground = #66
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+
+[module/powermenu]
+type = custom/menu
+
+format-padding = 5
+format-spacing = 1
+
+label-open = 
+label-close = 
+label-separator = |
+
+menu-0-0 = Logout
+menu-0-0-foreground = #fba922
+menu-0-0-exec = i3-msg exit
+menu-0-1 = Reboot
+menu-0-1-foreground = #fba922
+menu-0-1-exec = reboot
+menu-0-2 = Poweroff
+menu-0-2-foreground = #fba922
+menu-0-2-exec = poweroff

@@ -11,6 +11,7 @@ rofi.separator-style: solid
 rofi.hide-scrollbar: true
 rofi.lines: 3
 rofi.width: 100
-rofi.padding: 800
+rofi.padding: 780
 rofi.bw: 0
 rofi.auto-select: true
+rofi.show-icons: true
