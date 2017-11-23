@@ -1,8 +1,13 @@
 rofi.color-enabled: true
-rofi.color-window: argb:ee292f37, argb:0292f37, #259E83
-rofi.color-normal: argb:2000000, #ffffff, argb:2000000, argb:2000000, #259E83
-rofi.color-active: argb:2000000, #ffffff, argb:2000000, argb:2000000, #ffffff
-rofi.color-urgent: argb:2000000, #ffffff, argb:2000000, argb:2000000, #ffffff
+
+!                   background      border          separator
+rofi.color-window:  argb:ee292f37,  argb:0292f370,  #259E83
+
+!                   bg              fg          bgalt           hlbg            hlfg
+rofi.color-normal: argb:00000000, #ffffff, argb:00000000, argb:00000000, #259E83
+rofi.color-active: argb:00000000, #ffffff, argb:00000000, argb:00000000, #ffffff
+rofi.color-urgent: argb:00000000, #ffffff, argb:00000000, argb:00000000, #ffffff
+
 
 rofi.font: System San Francisco Display 20
 rofi.eh: 1
@@ -11,7 +16,9 @@ rofi.separator-style: solid
 rofi.hide-scrollbar: true
 rofi.lines: 3
 rofi.width: 100
-rofi.padding: 780
+rofi.padding: 650
 rofi.bw: 0
 rofi.auto-select: true
-rofi.show-icons: true
+rofi.terminal:          termite
+rofi.show-icons:        true
+rofi.drun-icon-theme:   Papirus

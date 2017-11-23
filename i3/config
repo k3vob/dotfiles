@@ -57,6 +57,7 @@ bindsym $mod+Escape kill
 
 # rofi
 bindsym $mod+Return exec rofi -show drun -display-drun ":"
+# bindsym $mod+Return exec rofi -show drun
 
 # Screenshots
 bindsym $mod+Print exec spectacle
