@@ -48,6 +48,7 @@ font-2 = MaterialIcons:size=14;4
 modules-left   = i3 xwindow
 modules-center = clock
 modules-right  = updates brightness volume battery wifi powermenu
+;modules-right  = brightness volume battery wifi powermenu
 
 [module/clock]
 type = internal/date

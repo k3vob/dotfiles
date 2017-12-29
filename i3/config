@@ -28,7 +28,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 font pango:System San Francisco Display 11
 
 # Polybar
-exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec --no-startup-id ~/.config/polybar/launch.sh
 
 # Wallpaper
 #exec_always --no-startup-id feh --bg-scale /home/kev/Pictures/Wallpapers/16x9/9koaOtI.jpg
@@ -41,6 +41,9 @@ exec_always --no-startup-id bgchd -dir ~/Pictures/Wallpapers/16x9 -bcknd feh -rp
 
 # Compton
 #exec_always --no-startup-id compton --config ~/.config/compton/compton.conf
+
+# Redshift
+# exec --no-startup-id redshift
 
 # Network Manager
 exec --no-startup-id nm-applet
@@ -179,6 +182,7 @@ assign [class="okular"] $workspace5
 assign [class="octopi"] $workspace8
 assign [class="systemsettings"] $workspace9
 assign [class="Spotify"] $workspace10
+# assign [class="xpad"] $workspace6
 
 for_window [class="Termite"] floating enable;
 for_window [class="Wicd-client.py"] floating enable;
