@@ -1,0 +1,3 @@
+/etc/fstab
+
+/dev/sdb1   /media/kev/HDD  ntfs-3g defaults    0   0

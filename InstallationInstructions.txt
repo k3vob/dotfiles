@@ -1,0 +1,220 @@
+###########################################
+# PREPARING PARTITIONS
+###########################################
+
+On Windows:
+- Delete Manjaro root partition
+- reformat to ext4
+- Swap partition (8GB)
+- Open cmd as admin
+    - 'diskpart'
+    - 'select disk 0'
+    - 'select part 2' (Windows boot)
+    - 'assign letter e'
+    - 'exit'
+- Open task manager
+    - file -> run new task
+    - e: -> delete "refind"
+
+###########################################
+# BIOS SETTING
+###########################################
+
+- General
+    - Boot sequence -> Boot list -> UEFI
+    - Advance boot options -> enable UEFI net...
+    - UEFI root path sec. -> Always
+- System Config
+    - SATA Op. -> AHCI
+    - DRIVES -> All 3
+- Secure Boot -> Disabled
+- Post Behaviour
+    - Fastboot -> Thorough
+- Delete refind boot option
+
+###########################################
+# MANJARO ARCHITECT
+###########################################
+
+- Username: Manjaro
+- Password: Manajaro
+- 'setup'
+
+1. Prepare Installation
+
+    i)      Set virtual console -> uk
+    
+    ii)     Mount partitions
+                - root -> ext4 + default mount options
+                - swap
+                - UEFI Windows -> /boot/efi/ -> reformat? NO
+                - No /home
+                
+    iii)    Configure mirror list
+                - Rank mirrors by speed -> stable
+                
+2. Install Desktop System
+    
+    i)      Install Manjaro desktop
+                - Install base -> yaourt + base-devel + linux414
+                - Additional modules -> None
+                - Desktop Environment -> KDE
+                - Extra packages? -> No
+                - Minimal KDE
+                
+    ii)     Display Driver
+                - select display driver -> video-intel
+
+3. Install Bootloader
+
+    refind
+    
+4. Configure Base
+
+    i)      Generate FSTAB
+                - Device UUID
+    
+    ii)     Set hostname, set root password,  users, etc.
+
+5. Done
+
+    Exit installer
+    Reboot
+    1st boot takes a minute (seems frozen) due to nouveau drivers
+    
+###########################################
+# NVIDIA DRIVERS
+###########################################
+
+1. Blacklist Nouveau drivers
+
+    Create file /etc/modprobe.d/blacklist.conf -> 'blacklist nouveau'
+
+2. Edit boot options in /boot/efi/EFI/refind/refind.conf
+
+    Add to bottom of refind.conf:
+    
+    #######################################################################
+    ### UUID of  root partition
+    ### loader, initrd @ /boot/vmlinux-xxxxxx and /boot/initramfs-xxxxx.img
+    ###     (tab or insert on default Manjaro entry at boot to check)
+    ### 'volume' must be set to name of root dir 
+    ###     - change in KDE Partition Manager (also UUID)
+    ### Icons must have refind-minimal theme installed
+    #######################################################################
+    
+    ### Only uncomment after testing manual entries work
+    #scanfor external,manual 
+
+    menuentry "Manjaro" {
+        icon     /EFI/refind/themes/rEFInd-minimal/icons/os_manjaro.png
+        volume   "Manjaro"
+        loader   /boot/vmlinuz-4.14-x86_64
+        initrd   /boot/initramfs-4.14-x86_64.img
+        options  "rw root=UUID=8c8ff667-d06b-4cd6-8f36-6359d5a23591 quiet acpi_rev_override=1"
+    }
+
+    menuentry "Windows 10" {
+        icon    \EFI\refind\themes\rEFInd-minimal\icons\os_win.png
+        loader  \EFI\Microsoft\Boot\bootmgfw.efi
+    }
+
+    include themes/rEFInd-minimal/theme.conf
+    
+    # https://github.com/EvanPurkhiser/rEFInd-minimal
+    
+    #######################################################################
+
+3. Install drivers
+    
+    - KDE System Settings -> Hardware Config
+    - Uninstall 'video-intel'
+    - Install   'video-hybrid-intel-nvidia-bumblebee
+
+4.  Install bumblebee (+ primus, + mesa if not already)
+
+    - 'sudo systemctl enable bumblebeed.service'
+    - 'sudo systemctl start bumblebeed.service'
+    - reboot
+    - 'optirun nvidia-smi
+
+###########################################
+# AUTO-MOUNT HDD
+###########################################
+
+Edit /etc/fstab
+
+    '/dev/sdb1  /media/kev/HDD  ntfs-3g defaults    0   0'
+
+###########################################
+# KDE SYSTEM SETTINGS
+###########################################
+
+Desktop Behaviour -> Screen Locking -> Off (i3lock)
+
+Account Details -> User Manager -> Set full Name
+
+Regional Settings -> Language -> Preferred Languages -> British English
+                  -> Spell Check -> ?
+                  
+Applications -> Locations -> Set all to HDD & Create links in /home
+
+Input Devices -> Mouse -> Reverse scroll direction -> No
+                       -> Double-click to open files and folders -> Yes
+              -> Touchpad -> Mouse Click Emulation -> Yes
+
+Power Management -> On Ac Power -> Buttons events handling -> When laptop lid closed -> Suspend
+                                                           -> When power button pressed -> Prompt log out dialog
+                 -> On Battery -> Dim Screen -> 3 min
+                               -> Screen Energey Saving -> Switch Off -> 5 min
+                               -> Suspend Session -> 6 min + Suspend
+                 -> On Low Battery -> Dim Screen -> 1 min
+                                   -> Screen Energey Saving -> Switch Off -> 2 min
+                                   -> Suspend Session -> 2 min + Suspend
+
+###########################################
+# KDE THEMES
+###########################################
+
+arc-themes-maia
+gtk-theme-maia
+maia-icon-theme
+maia-wallpaper
+plasma5-themes-maia
+sddm-maia-theme
+system-san-francisco-font-git (AUR)
+ttf-droid
+
+
+Workspace Theme -> Look And Feel -> Maia
+                -> Desktop Theme -> Maia
+                -> Cursor Theme -> Breeze Snow
+                -> Splash Screen -> None (i3)
+                
+Colors -> Maia
+
+Fonts -> Adjust All Fonts -> SFNS Display
+      -> Fixed width -> Droid Sans Mono
+      
+Icons -> Maia
+
+Application Style -> Gnome Application Style -> GTK2 -> Maia
+                                             -> GTK3 -> Maia
+                                             -> Fonts -> SFNS Display
+            
+Desktop Behaviour -> Screen Locking -> Wallpaper -> Maia
+
+Startup and Shutdown -> Login Screen -> Theme -> Maia
+                                     -> Advanced -> Cursor Theme -> Breeze Snow
+                                     
+
+###########################################
+# CONFIGURE i3
+###########################################
+
+
+
+###########################################
+# ATOM
+###########################################
+
