@@ -1,5 +1,0 @@
-https://gist.github.com/MeirBon/c99ae4e9e40f7e542361f646e4f637f5
-
-optirun glxinfo|egrep "OpenGL vendor|OpenGL renderer"
-
-optirun nvidia-smi -l
